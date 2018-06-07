@@ -10,14 +10,16 @@ message Sessions {
   repeated Session sessions = 1;
 }
 message Session {
-  string lang = 1;
-  string project = 2;
-  int64 start = 3;
-  int64 end = 4;
-  int32 tick = 5;
+  string  filename  = 1;
+  string  filetype  = 2;
+  string  project   = 3;
+  int64   start     = 4;
+  int64   end       = 5;
+  int64   lastTick  = 6;
+  int32   ticks     = 7;
 }
 
 message StdResponse {
-  int32 statusCode = 1; // 0-Success, 1-Error
-  string errMsg = 2; // error msg if statusCode is not 0
+  int32   statusCode  = 1; // 0-Success, 1-Error
+  string  errMsg      = 2; // error msg if statusCode is not 0
 }
