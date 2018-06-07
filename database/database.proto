@@ -1,0 +1,23 @@
+syntax = 'proto3';
+
+package database;
+
+service DbService {
+  rpc SaveSession(Sessions) returns (StdResponse);
+} 
+
+message Sessions {
+  repeated Session sessions = 1;
+}
+message Session {
+  string lang = 1;
+  string project = 2;
+  int64 start = 3;
+  int64 end = 4;
+  int32 tick = 5;
+}
+
+message StdResponse {
+  int32 statusCode = 1; // 0-Success, 1-Error
+  string errMsg = 2; // error msg if statusCode is not 0
+}
