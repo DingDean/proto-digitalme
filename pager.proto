@@ -1,0 +1,13 @@
+syntax = 'proto3';
+
+package pager;
+
+service PagerService {
+  rpc Ping(stream Timestamp) returns(Empty);
+}
+
+message Empty {}
+
+message Timestamp {
+  int64 ts = 1; // unix timestamp in ms
+}
