@@ -1,0 +1,36 @@
+syntax = 'proto3';
+
+package database;
+
+service DbService {
+  rpc SaveSession(Sessions) returns (StdResponse);
+  rpc SaveTomato(Tomatos) returns (StdResponse);
+} 
+
+message Sessions {
+  message Session {
+    string  filename  = 1;
+    string  filetype  = 2;
+    string  project   = 3;
+    int64   start     = 4;
+    int64   end       = 5;
+    int64   lastTick  = 6;
+    int32   ticks     = 7;
+  }
+  repeated Session sessions = 1;
+}
+
+message Tomatos {
+  message Tomato {
+    int64 start     = 1; // the timestamp when tomato session started
+    int32 minutes   = 2; // the number of minutes elapsed for the session
+    bool isComplete = 3;
+    string reflection = 4; // any thought on the session
+  }
+  repeated Tomato tomatos = 1;
+}
+
+message StdResponse {
+  int32   statusCode  = 1; // 0-Success, 1-Error
+  string  errMsg      = 2; // error msg if statusCode is not 0
+}
