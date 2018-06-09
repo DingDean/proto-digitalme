@@ -5,7 +5,13 @@ package database;
 service DbService {
   rpc SaveSession(Sessions) returns (StdResponse);
   rpc SaveTomato(Tomatos) returns (StdResponse);
+  rpc GetLangReport(TimeRange) returns (LangReports); // Get Reports of milliseconds used for each language for each day during the TimeRange
+  rpc GetTimeflow(TimeRange) returns (TimeReports); // Get the time sections where I was active on programming for each day during the TiemRange
+  rpc GetFullReport(TimeRange) returns (FullReports);
+  rpc LiveDailyReport(Empty) returns (stream FullReport);
 } 
+
+message Empty {}
 
 message Sessions {
   message Session {
@@ -33,4 +39,44 @@ message Tomatos {
 message StdResponse {
   int32   statusCode  = 1; // 0-Success, 1-Error
   string  errMsg      = 2; // error msg if statusCode is not 0
+}
+
+message TimeRange {
+  int64 from = 1; // unix time in ms
+  int64 end = 2;
+}
+
+message Lang {
+  string filetype = 1;
+  int64 totalTime = 2;
+}
+message LangReport {
+  repeated Lang langs = 1;
+  int64 date = 2;
+}
+message LangReports {
+  repeated LangReport reports = 1;
+}
+
+message TimeSection {
+  int64 from = 1;
+  int32 elapsed = 2; // ms
+  string filetype = 3;
+  int32 ticks = 4;
+}
+message TimeReport {
+  repeated TimeSection flow = 1; // time sections, sort by time
+  int64 date = 2; 
+}
+message TimeReports {
+  repeated TimeReport reports = 1;
+}
+
+message FullReport {
+  LangReport lang = 1;
+  TimeReport flow = 2;
+  int64 date = 3;
+}
+message FullReports {
+  repeated FullReport reports = 3;
 }
