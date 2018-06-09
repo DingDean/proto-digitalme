@@ -73,8 +73,8 @@ message TimeReports {
 }
 
 message FullReport {
-  LangReport lang = 1;
-  TimeReport flow = 2;
+  repeated Lang langs = 1;
+  repeated TimeSection flow = 2;
   int64 date = 3;
 }
 message FullReports {
