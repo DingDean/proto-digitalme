@@ -78,5 +78,5 @@ message FullReport {
   int64 date = 3;
 }
 message FullReports {
-  repeated FullReport reports = 3;
+  repeated FullReport reports = 1;
 }
