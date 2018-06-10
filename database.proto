@@ -8,7 +8,7 @@ service DbService {
   rpc GetLangReport(TimeRange) returns (LangReports); // Get Reports of milliseconds used for each language for each day during the TimeRange
   rpc GetTimeflow(TimeRange) returns (TimeReports); // Get the time sections where I was active on programming for each day during the TiemRange
   rpc GetFullReport(TimeRange) returns (FullReports);
-  rpc GetDailyReport(Empty) returns (FullReport);
+  rpc LiveDailyReport(Empty) returns (stream FullReport);
 } 
 
 message Empty {}
