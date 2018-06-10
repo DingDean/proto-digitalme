@@ -48,7 +48,7 @@ message TimeRange {
 
 message Lang {
   string filetype = 1;
-  int64 totalTime = 2;
+  int32 totalTime = 2;
 }
 message LangReport {
   repeated Lang langs = 1;
