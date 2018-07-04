@@ -5,6 +5,7 @@ package database;
 service DbService {
   rpc SaveSession(Sessions) returns (StdResponse);
   rpc SaveTomato(Tomatos) returns (StdResponse);
+  rpc SaveSearch(Search) returns (StdResponse);
   rpc GetLangReport(TimeRange) returns (LangReports); // Get Reports of milliseconds used for each language for each day during the TimeRange
   rpc GetTimeflow(TimeRange) returns (TimeReports); // Get the time sections where I was active on programming for each day during the TiemRange
   rpc GetFullReport(TimeRange) returns (FullReports);
@@ -34,6 +35,11 @@ message Tomatos {
     string reflection = 4; // any thought on the session
   }
   repeated Tomato tomatos = 1;
+}
+
+message Search {
+  string query = 1;
+  int64 date = 2;
 }
 
 message StdResponse {
